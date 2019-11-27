@@ -5,7 +5,11 @@ import 'package:flutter_crash_plugin/flutter_crash_plugin.dart';
 import 'dart:io';
 
 bool get isInDebugMode {
+  // Assume you're in production mode.
   bool inDebugMode = false;
+  // Assert expressions are only evaluated during development. They are ignored
+  // in production. Therefore, this code only sets `inDebugMode` to true
+  // in a development environment.
   assert(inDebugMode = true);
   return inDebugMode;
 }
@@ -50,9 +54,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     if(Platform.isAndroid){
-      FlutterCrashPlugin.setUp('43eed8b173');
+      FlutterCrashPlugin.setUp('5565bd26ff');
     }else if(Platform.isIOS){
-      FlutterCrashPlugin.setUp('088aebe0d5');
+      FlutterCrashPlugin.setUp('0fa549bee2');
     }
     super.initState();
   }
@@ -61,7 +65,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
@@ -84,8 +87,9 @@ class MyHomePage extends StatelessWidget {
             RaisedButton(
               child: Text('Dart exception'),
               elevation: 1.0,
-              onPressed: () {
-                throw StateError('This is a Dart exception.');
+              onPressed: () async {
+//                throw StateError('This is a Dart exception.');
+                print("ssss".substring(0,12));
               },
             ),
             new RaisedButton(
